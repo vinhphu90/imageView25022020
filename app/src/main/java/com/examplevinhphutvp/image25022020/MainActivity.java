@@ -8,13 +8,16 @@ import android.widget.Button;
 import android.widget.ImageView;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 public class MainActivity extends AppCompatActivity {
 
     ImageView mImg;
     Button mBtnNext,mBtnPrevious,mBtnRandom,mBtnAutoNext,mBtnAutoPrevious;
     ArrayList<Integer>mArrayImageIntegers;
-    int count = 0;
+    int mcount = 0;
+    int mIndexRandom;
+    Random mRandom;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,12 +42,18 @@ public class MainActivity extends AppCompatActivity {
         mBtnNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                count = count >= mArrayImageIntegers.size() - 1 ? 0 : ++count;
-                if (count >= mArrayImageIntegers.size()-1){
-                    count = 0;
-                }
-                mImg.setImageResource(mArrayImageIntegers.get(count));
+               mcount = mcount >= mArrayImageIntegers.size() - 1 ? 0 : ++mcount;
+                mImg.setImageResource(mArrayImageIntegers.get(mcount));
             }
         });
+        mBtnPrevious.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mcount = mcount <= 0 ? mArrayImageIntegers .size() - 1 : --mcount;
+                mImg.setImageResource(mArrayImageIntegers.get(mcount));
+            }
+        });
+
+
     }
 }
