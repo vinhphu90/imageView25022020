@@ -53,6 +53,15 @@ public class MainActivity extends AppCompatActivity {
                 mImg.setImageResource(mArrayImageIntegers.get(mcount));
             }
         });
+        mBtnRandom.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mRandom = new Random();
+                mIndexRandom = mRandom.nextInt(mArrayImageIntegers.size());
+                mcount = mIndexRandom;
+                mImg.setImageResource(mArrayImageIntegers.get(mIndexRandom));
+            }
+        });
 
 
     }
