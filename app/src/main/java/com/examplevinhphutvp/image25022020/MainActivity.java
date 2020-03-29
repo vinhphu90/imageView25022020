@@ -3,6 +3,8 @@ package com.examplevinhphutvp.image25022020;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.os.CountDownTimer;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -18,6 +20,7 @@ public class MainActivity extends AppCompatActivity {
     int mcount = 0;
     int mIndexRandom;
     Random mRandom;
+    CountDownTimer mcountDownTimer;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,14 +45,14 @@ public class MainActivity extends AppCompatActivity {
         mBtnNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               mcount = mcount >= mArrayImageIntegers.size() - 1 ? 0 : ++mcount;
+                mcount = mcount >= mArrayImageIntegers.size() - 1 ? 0 : ++mcount;
                 mImg.setImageResource(mArrayImageIntegers.get(mcount));
             }
         });
         mBtnPrevious.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mcount = mcount <= 0 ? mArrayImageIntegers .size() - 1 : --mcount;
+                mcount = mcount <= 0 ? mArrayImageIntegers.size() - 1 : --mcount;
                 mImg.setImageResource(mArrayImageIntegers.get(mcount));
             }
         });
@@ -62,6 +65,32 @@ public class MainActivity extends AppCompatActivity {
                 mImg.setImageResource(mArrayImageIntegers.get(mIndexRandom));
             }
         });
+        mBtnAutoNext.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (mcountDownTimer != null) {
+                    mcountDownTimer.cancel();
+                    mcountDownTimer = null;
+                }
+                mcountDownTimer = new CountDownTimer(5000,1000) {
+                    @Override
+                    public void onTick(long millisUntilFinished) {
+                        mcount = mcount >= mArrayImageIntegers.size() - 1 ? 0 : ++mcount;
+                        mImg.setImageResource(mArrayImageIntegers.get(mcount));
+                    }
+
+                    @Override
+                    public void onFinish() {
+                        mcountDownTimer.start();
+
+                    }
+                };
+                mcountDownTimer.start();
+            }
+        });
+
+
+
 
 
     }
