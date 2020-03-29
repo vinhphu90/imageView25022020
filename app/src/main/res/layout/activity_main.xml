@@ -47,12 +47,22 @@
         android:text="AutoNext"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
+
     <Button
         android:layout_marginStart="20dp"
         android:id="@+id/buttonAutoPrevious"
         android:layout_marginTop="50dp"
         android:layout_below="@id/buttonRandom"
-        android:text="Nextprevious"
+        android:text="AutoPrevious"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+    <Button
+        android:layout_centerHorizontal="true"
+        android:layout_marginEnd="20dp"
+        android:id="@+id/buttonPause"
+        android:layout_marginTop="50dp"
+        android:layout_below="@id/buttonAutonetx"
+        android:text="pause"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
 </RelativeLayout>

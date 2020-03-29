@@ -15,7 +15,7 @@ import java.util.Random;
 public class MainActivity extends AppCompatActivity {
 
     ImageView mImg;
-    Button mBtnNext,mBtnPrevious,mBtnRandom,mBtnAutoNext,mBtnAutoPrevious;
+    Button mBtnNext,mBtnPrevious,mBtnRandom,mBtnAutoNext,mBtnAutoPrevious,mBtnPause;
     ArrayList<Integer>mArrayImageIntegers;
     int mcount = 0;
     int mIndexRandom;
@@ -33,6 +33,7 @@ public class MainActivity extends AppCompatActivity {
         mBtnAutoNext = findViewById(R.id.buttonAutonetx);
         mBtnAutoNext = findViewById(R.id.buttonAutonetx);
         mBtnAutoPrevious = findViewById(R.id.buttonAutoPrevious);
+        mBtnPause = findViewById(R.id.buttonPause);
 
         // Tạo mảng hình
         mArrayImageIntegers = new ArrayList<>();
@@ -88,7 +89,34 @@ public class MainActivity extends AppCompatActivity {
                 mcountDownTimer.start();
             }
         });
+        //task1 : làm chức năng Auto Previous
+        //task2 : làm chức năng pause auto
+        mBtnAutoPrevious.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mcountDownTimer = new CountDownTimer(3000,1000) {
+                    @Override
+                    public void onTick(long millisUntilFinished) {
+                        mcount = mcount <= 0 ? mArrayImageIntegers.size()-1:--mcount;
+                        mImg.setImageResource(mArrayImageIntegers.get(mcount));
 
+                    }
+
+                    @Override
+                    public void onFinish() {
+                        mcountDownTimer .start();
+
+                    }
+                };
+                mcountDownTimer .start();
+            }
+        });
+        mBtnPause.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mcountDownTimer.cancel();
+            }
+        });
 
 
 
